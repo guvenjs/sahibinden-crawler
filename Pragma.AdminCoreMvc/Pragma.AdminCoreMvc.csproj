@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-Pragma.AdminCoreMvc-41DA04D9-2DC2-488E-8DD3-8BE436DFB87B</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Uploads\campaign\**" />
+    <Compile Remove="Uploads\event\**" />
+    <Compile Remove="Uploads\promoter\**" />
+    <Compile Remove="Uploads\venue\**" />
+    <Content Remove="Uploads\campaign\**" />
+    <Content Remove="Uploads\event\**" />
+    <Content Remove="Uploads\promoter\**" />
+    <Content Remove="Uploads\venue\**" />
+    <EmbeddedResource Remove="Uploads\campaign\**" />
+    <EmbeddedResource Remove="Uploads\event\**" />
+    <EmbeddedResource Remove="Uploads\promoter\**" />
+    <EmbeddedResource Remove="Uploads\venue\**" />
+    <None Remove="Uploads\campaign\**" />
+    <None Remove="Uploads\event\**" />
+    <None Remove="Uploads\promoter\**" />
+    <None Remove="Uploads\venue\**" />
+    <TypeScriptCompile Remove="Uploads\campaign\**" />
+    <TypeScriptCompile Remove="Uploads\event\**" />
+    <TypeScriptCompile Remove="Uploads\promoter\**" />
+    <TypeScriptCompile Remove="Uploads\venue\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Linq.Dynamic" Version="1.0.4" />
+    <PackageReference Include="MailKit" Version="2.4.1" />
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="MimeKit" Version="2.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="wwwroot\vendors\data-tables\.DS_Store" />
+    <None Include="wwwroot\vendors\data-tables\css\.DS_Store" />
+    <None Include="wwwroot\vendors\data-tables\extensions\.DS_Store" />
+    <None Include="wwwroot\vendors\data-tables\extensions\responsive\.DS_Store" />
+    <None Include="wwwroot\vendors\data-tables\extensions\responsive\css\.DS_Store" />
+    <None Include="wwwroot\vendors\data-tables\extensions\responsive\js\.DS_Store" />
+    <None Include="wwwroot\vendors\data-tables\extensions\responsive\js\dataTables.responsive.js" />
+    <None Include="wwwroot\vendors\data-tables\extensions\responsive\js\dataTables.responsive.min.js" />
+    <None Include="wwwroot\vendors\data-tables\extensions\responsive\Readme.md" />
+    <None Include="wwwroot\vendors\data-tables\js\.DS_Store" />
+    <None Include="wwwroot\vendors\data-tables\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\vendors\data-tables\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\vendors\data-tables\js\datatables.checkboxes.min.js" />
+    <None Include="wwwroot\vendors\data-tables\js\dataTables.material.js" />
+    <None Include="wwwroot\vendors\data-tables\js\dataTables.material.min.js" />
+    <None Include="wwwroot\vendors\data-tables\js\dataTables.select.min.js" />
+    <None Include="wwwroot\vendors\data-tables\js\jquery.dataTables.js" />
+    <None Include="wwwroot\vendors\data-tables\js\jquery.dataTables.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pragma.AdminCore.Data\Pragma.AdminCore.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Uploads\" />
+  </ItemGroup>
+
+</Project>

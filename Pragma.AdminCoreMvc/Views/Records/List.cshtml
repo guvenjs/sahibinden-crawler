@@ -1,0 +1,257 @@
+﻿@using Pragma.AdminCoreMvc.Models;
+@model RecordListModel
+@{
+    ViewBag.IsRecordsPageActive = true;
+}
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/vendors/data-tables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/data-tables/css/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/pages/data-tables.css">
+}
+@section Scripts{
+    <script src="~/vendors/data-tables/js/jquery.dataTables.min.js"></script>
+    <script src="~/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/vendors/data-tables/js/dataTables.select.min.js"></script>
+    <script src="~/js/scripts/data-tables.js"></script>
+    <script>
+        $(function () {
+            $('#page-length-option').DataTable({
+                "processing": true,
+                "bDestroy": true,
+                "serverSide": true,
+                "filter": true,
+                "orderMulti": false,
+                "displayLength": 50,
+                "lengthMenu": [
+                    [10, 25, 50, 100],
+                    [10, 25, 50, 100]
+                ],
+                "language": trLanguage,
+                "ajax": {
+                    "url": "/Records/LoadData",
+                    "datatype": "JSON",
+                },
+                "order": [[1, "desc"]],
+                "columnDefs":
+                    [{
+                        "targets": [0],
+                        "visible": false,
+                        "searchable": false
+                    }],
+                "columns": [
+                    { "data": "Id", "name": "Id" },
+                    { "data": "DateCreated", "name": "DateCreated", "autoWidth": true },
+                    {
+                        "data": "ThumbnailImage", "name": "ThumbnailImage", "autoWidth": true, orderable: false,
+                        "render": function (data, type, full, meta) { return "<img class='list-img' src='" + full.ThumbnailImage + "'>"; }
+                    },
+                    { "data": "Brand", "name": "Brand", "autoWidth": true },
+                    { "data": "Serie", "name": "Serie", "autoWidth": true },
+                    { "data": "Year", "name": "Year", "autoWidth": true },
+                    { "data": "KM", "name": "KM", "autoWidth": true },
+                    { "data": "LivePrice", "name": "LivePrice", "autoWidth": true },
+                    {
+                        orderable: false,
+                        "render": function (data, type, full, meta) { return "<a target='_blank' class='btn-floating mb-1 waves-effect waves-light red' onclick='showPriceChanges(" + full.Id + ")'><i class='material-icons'>attach_money</i></a>"; }
+                    },
+                    {
+                        orderable: false,
+                        "render": function (data, type, full, meta) { return "<a target='_blank' class='btn-floating mb-1 waves-effect waves-light' href='" + full.Url + "'><i class='material-icons'>keyboard_tab</i></a>"; }
+                    },
+                ],
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#onlyPriceChanges").change(function () {
+                if ($("#onlyPriceChanges").is(':checked') == true) {
+                    $('#page-length-option').DataTable({
+                        "processing": true,
+                        "bDestroy": true,
+                        "serverSide": true,
+                        "filter": true,
+                        "orderMulti": false,
+                        "displayLength": 50,
+                        "lengthMenu": [
+                            [10, 25, 50, 100],
+                            [10, 25, 50, 100]
+                        ],
+                        "language": trLanguage,
+                        "ajax": {
+                            "url": "/Records/LoadDataOnlyPriceChanges",
+                            "datatype": "JSON",
+                        },
+                        "order": [[1, "desc"]],
+                        "columnDefs":
+                            [{
+                                "targets": [0],
+                                "visible": false,
+                                "searchable": false
+                            }],
+                        "columns": [
+                            { "data": "Id", "name": "Id" },
+                            { "data": "DateCreated", "name": "DateCreated", "autoWidth": true },
+                            {
+                                "data": "ThumbnailImage", "name": "ThumbnailImage", "autoWidth": true, orderable: false,
+                                "render": function (data, type, full, meta) { return "<img class='list-img' src='" + full.ThumbnailImage + "'>"; }
+                            },
+                            { "data": "Brand", "name": "Brand", "autoWidth": true },
+                            { "data": "Serie", "name": "Serie", "autoWidth": true },
+                            { "data": "Year", "name": "Year", "autoWidth": true },
+                            { "data": "KM", "name": "KM", "autoWidth": true },
+                            { "data": "LivePrice", "name": "LivePrice", "autoWidth": true },
+                            {
+                                orderable: false,
+                                "render": function (data, type, full, meta) { return "<a target='_blank' class='btn-floating mb-1 waves-effect waves-light red' onclick='showPriceChanges(" + full.Id + ")'><i class='material-icons'>attach_money</i></a>"; }
+                            },
+                            {
+                                orderable: false,
+                                "render": function (data, type, full, meta) { return "<a target='_blank' class='btn-floating mb-1 waves-effect waves-light' href='" + full.Url + "'><i class='material-icons'>keyboard_tab</i></a>"; }
+                            },
+                        ],
+                    });
+                }
+                else {
+                    $('#page-length-option').DataTable({
+                        "processing": true,
+                        "bDestroy": true,
+                        "serverSide": true,
+                        "filter": true,
+                        "orderMulti": false,
+                        "displayLength": 50,
+                        "lengthMenu": [
+                            [10, 25, 50, 100],
+                            [10, 25, 50, 100]
+                        ],
+                        "language": trLanguage,
+                        "ajax": {
+                            "url": "/Records/LoadData",
+                            "datatype": "JSON",
+                        },
+                        "order": [[1, "desc"]],
+                        "columnDefs":
+                            [{
+                                "targets": [0],
+                                "visible": false,
+                                "searchable": false
+                            }],
+                        "columns": [
+                            { "data": "Id", "name": "Id" },
+                            { "data": "DateCreated", "name": "DateCreated", "autoWidth": true },
+                            {
+                                "data": "ThumbnailImage", "name": "ThumbnailImage", "autoWidth": true, orderable: false,
+                                "render": function (data, type, full, meta) { return "<img class='list-img' src='" + full.ThumbnailImage + "'>"; }
+                            },
+                            { "data": "Brand", "name": "Brand", "autoWidth": true },
+                            { "data": "Serie", "name": "Serie", "autoWidth": true },
+                            { "data": "Year", "name": "Year", "autoWidth": true },
+                            { "data": "KM", "name": "KM", "autoWidth": true },
+                            { "data": "LivePrice", "name": "LivePrice", "autoWidth": true },
+                            {
+                                orderable: false,
+                                "render": function (data, type, full, meta) { return "<a target='_blank' class='btn-floating mb-1 waves-effect waves-light red' onclick='showPriceChanges(" + full.Id + ")'><i class='material-icons'>attach_money</i></a>"; }
+                            },
+                            {
+                                orderable: false,
+                                "render": function (data, type, full, meta) { return "<a target='_blank' class='btn-floating mb-1 waves-effect waves-light' href='" + full.Url + "'><i class='material-icons'>keyboard_tab</i></a>"; }
+                            },
+                        ],
+                    });
+                }
+            });
+        })
+    </script>
+    <script>
+        function showPriceChanges(id) {
+            $.ajax({
+                "url": "/Records/GetPriceChanges",
+                "datatype": "JSON",
+                "data": { id: id },
+                "success": function (response) {
+                    swal({
+                        title: 'Fiyat Değişimleri',
+                        text: 'İlk fiyatı : ' + response.FirstPrice + '\n\n\n' + response.PriceChanges,
+                        icon: "info",
+                    })
+                    console.log(response);
+                }
+            });
+        }
+    </script>
+}
+
+<div id="main">
+    <div class="row">
+        <div id="breadcrumbs-wrapper" data-image="/images/gallery/breadcrumb-bg.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <h5 class="breadcrumbs-title mt-0 mb-0"><span>Kayıtlar</span></h5>
+                    </div>
+                    <div class="col s12 m6 l6 right-align-md">
+                        <ol class="breadcrumbs mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="/Home/Index">Anasayfa</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/Records/List">Kayıtlar</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12">
+            <div class="container">
+                <div class="section section-data-tables">
+                    <div class="card">
+                        <div class="card-content flex-header-content" style="flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                            <p class="caption mb-0">
+                                Filtrene uygun kayıtlar aşağıda listelenmiştir.
+                            </p>
+                            <div class="switch mt-2">
+                                <label>
+                                    Tümü
+                                    <input id="onlyPriceChanges" type="checkbox">
+                                    <span class="lever"></span>
+                                    Sadece Fiyatı Değişenler
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 m12 l12">
+                            <div id="button-trigger" class="card card card-default scrollspy">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <table id="page-length-option" class="display">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Tarih</th>
+                                                        <th></th>
+                                                        <th>Marka</th>
+                                                        <th>Seri</th>
+                                                        <th>Yıl</th>
+                                                        <th>KM</th>
+                                                        <th>Fiyat</th>
+                                                        <th>₺ Değişimleri</th>
+                                                        <th>Sahibinden Sayfası</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

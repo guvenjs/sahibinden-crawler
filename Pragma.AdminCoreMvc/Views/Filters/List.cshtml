@@ -1,0 +1,115 @@
+﻿@using Pragma.AdminCoreMvc.Models;
+@model FilterListModel
+@{
+    ViewBag.IsFilterPageActive = true;
+}
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/vendors/data-tables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/data-tables/css/select.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/pages/data-tables.css">
+}
+@section Scripts{
+    <script src="~/vendors/data-tables/js/jquery.dataTables.min.js"></script>
+    <script src="~/vendors/data-tables/extensions/responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/vendors/data-tables/js/dataTables.select.min.js"></script>
+    <script src="~/js/scripts/data-tables.js"></script>
+    <script>
+        $(function () {
+            $('#page-length-option').DataTable({
+                "processing": true,
+                "bDestroy": true,
+                "serverSide": true,
+                "filter": true,
+                "orderMulti": false,
+                "displayLength": 50,
+                "lengthMenu": [
+                    [10, 25, 50, 100],
+                    [10, 25, 50, 100]
+                ],
+                "language": trLanguage,
+                "ajax": {
+                    "url": "/Filters/LoadData",
+                    "datatype": "JSON"
+                },
+                "order": [[1, "desc"]],
+                "columnDefs":
+                    [{
+                        "targets": [0],
+                        "visible": false,
+                        "searchable": false
+                    }],
+                "columns": [
+                    { "data": "Id", "name": "Id" },
+                    { "data": "DateCreated", "name": "DateCreated", "autoWidth": true },
+                    { "data": "Name", "name": "Controller", "autoWidth": true },
+                    { "data": "Url", "name": "Action", "autoWidth": true },
+                ],
+            });
+        });
+    </script>
+}
+
+<div id="main">
+    <div class="row">
+        <div id="breadcrumbs-wrapper" data-image="/images/gallery/breadcrumb-bg.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <h5 class="breadcrumbs-title mt-0 mb-0"><span>Filtreler</span></h5>
+                    </div>
+                    <div class="col s12 m6 l6 right-align-md">
+                        <ol class="breadcrumbs mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="/Home/Index">Anasayfa</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/Filters/List">Filtreler</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12">
+            <div class="container">
+                <div class="section section-data-tables">
+                    <div class="card">
+                        <div class="card-content flex-header-content">
+                            <p class="caption mb-0">
+                                Crawl edilecek filtreler aşağıda listelenmiştir.
+                            </p>
+                            @*<a href="/Filters/Create" class="btn waves-effect waves-light right">
+                                Yeni Kayıt
+                                <i class="material-icons right">add</i>
+                            </a>*@
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 m12 l12">
+                            <div id="button-trigger" class="card card card-default scrollspy">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <table id="page-length-option" class="display">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Tarih</th>
+                                                        <th>İsim</th>
+                                                        <th>Url</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

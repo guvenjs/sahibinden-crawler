@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html class="loading" lang="tr" data-textdirection="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
+    <meta name="author" content="ThemeSelect">
+    <title>Admin</title>
+    <link rel="apple-touch-icon" href="~/images/brand/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/brand/favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/vendors/vendors.min.css">
+    <link rel="stylesheet" href="~/vendors/sweetalert/sweetalert.css" />
+    <link rel="stylesheet" type="text/css" href="~/vendors/flag-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/vendors/noUiSlider/nouislider.min.css" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="~/vendors/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendors/select2/select2-materialize.css?v=2">
+
+    <link rel="stylesheet" type="text/css" href="~/css/themes/vertical-dark-menu-template/materialize.css?a=8">
+    <link rel="stylesheet" type="text/css" href="~/css/themes/vertical-dark-menu-template/style.css?v=1">
+    <link rel="stylesheet" type="text/css" href="~/css/custom/lightbox.min.css">
+
+    @RenderSection("Css", required: false)
+
+    <link rel="stylesheet" type="text/css" href="~/css/custom/custom.css?a=1">
+</head>
+
+<body class="vertical-layout page-header-light vertical-menu-collapsible vertical-dark-menu preload-transitions 2-columns" data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
+    <div id="loading" style="display:none;">
+
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+
+        <div class="progress progress-2">
+            <div class="indeterminate"></div>
+        </div>
+
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @await Component.InvokeAsync("Header")
+
+    @await Component.InvokeAsync("LeftNavigationBar")
+
+
+    @RenderBody()
+
+
+    @await Component.InvokeAsync("Footer")
+
+    <script src="~/js/vendors.min.js?v=2.0"></script>
+    <script src="~/vendors/sweetalert/sweetalert.min.js"></script>
+    <script src="~/vendors/noUiSlider/nouislider.js"></script>
+
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/search.js"></script>
+    @RenderSection("Scripts", required: false)
+
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/custom/lightbox.min.js"></script>
+    <script src="~/js/custom/custom-script.js"></script>
+    @*<script src="~/js/scripts/page-users.js"></script>*@
+</body>
+
+</html>
