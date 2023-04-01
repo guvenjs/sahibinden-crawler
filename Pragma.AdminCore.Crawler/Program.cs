@@ -43,7 +43,7 @@ namespace Pragma.AdminCore.Crawler
 
             var services = new ServiceCollection();
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("server=DESKTOP-2CU2CT6\\SQLEXPRESS;database=SahibindenCrawler;User Id=sa;Password=1234567890;MultipleActiveResultSets=true;"));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("server=localhost;database=SahibindenCrawler;User Id=sa;Password=..;MultipleActiveResultSets=true;"));
 
             var serviceProvider = services.BuildServiceProvider();
             _context = serviceProvider.GetService<ApplicationDbContext>();
